@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Pendientes</title>
+    <h1>Pendings List</h1>
+
+    <table>
+        <tr>
+            <th>Items</th>
+        </tr>
+        {% for tarea in tareas %}
+        <tr>
+            <td>{{tarea.titulo}}</td>
+        </tr>
+
+        {% empty %}
+        <h3>No items on this list</h3>
+
+        {% endfor %}
+
+    </table>
+</head>
+<body>
+
+</body>
+</html>
