@@ -4,11 +4,14 @@ from django.views.generic.detail import DetailView
 from .models import Tarea
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
+
 
 # Create your views here.
 class ListPendings(ListView):
     model = Tarea
     context_object_name = 'tareas'
+
 
 class DetalleTarea(DetailView):
     model = Tarea
@@ -17,8 +20,15 @@ class DetalleTarea(DetailView):
     # To give the template a custom name and avoid dependency on default name
     template_name = 'base/tarea.html'
 
+
 # To create a new task from a view
 class CrearTarea(CreateView):
+    model = Tarea
+    fields = '__all__'
+    success_url = reverse_lazy('pendings')
+
+# To edit a task from a view
+class EditarTarea(UpdateView):
     model = Tarea
     fields = '__all__'
     success_url = reverse_lazy('pendings')
