@@ -8,10 +8,12 @@
     <table>
         <tr>
             <th>Items</th>
+            <th></th>
         </tr>
         {% for tarea in tareas %}
         <tr>
             <td>{{tarea.titulo}}</td>
+            <td><a href="{% url 'tarea' tarea.id %}">Look Up</a></td>
         </tr>
 
         {% empty %}
