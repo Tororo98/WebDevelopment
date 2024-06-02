@@ -21,4 +21,4 @@ class DetalleTarea(DetailView):
 class CrearTarea(CreateView):
     model = Tarea
     fields = '__all__'
-    success_url = reverse_lazy('tareas')
+    success_url = reverse_lazy('pendings')
