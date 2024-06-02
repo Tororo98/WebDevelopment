@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Task</title>
+    <form method="POST">
+        {% csrf_token %}
+        <p>You will delete this task: "{{tarea}}"</p>
+        <input type="submit" value="Delete">
+    </form>
+
+    <a href="{% url 'pendings' %}"> Cancel</a>
+</head>
+<body>
+
+</body>
+</html>

@@ -2,9 +2,8 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Tarea
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView
 
 
 # Create your views here.
@@ -32,3 +31,9 @@ class EditarTarea(UpdateView):
     model = Tarea
     fields = '__all__'
     success_url = reverse_lazy('pendings')
+
+class EliminarTarea(DeleteView):
+    model = Tarea
+    context_object_name = 'tarea'
+    success_url = reverse_lazy('pendings')
+    template_name = 'base/tarea_confirm_delete.html'
