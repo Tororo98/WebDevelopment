@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista Pendientes</title>
+    {% if request.user.is_authenticated %}
+        <p>Hello: {{request.user}}</p>
+        <a href="">Logout</a>
+    {% else %}
+        <a href="">Login</a>
+    {% endif %}
+    <hr>
+
     <h1>Pendings List</h1>
 
     <table>
