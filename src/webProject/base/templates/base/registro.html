@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login User</title>
-    <h1>Login</h1>
+    <title>Register User</title>
+    <h1>Sign In</h1>
 
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" value="Login">
+        <input type="submit" value="Register">
     </form>
 
-    <p>Don't have an account? <a href="{% url 'registro' %}">Sign In</a></p>
+    <p>Already registered? <a href="{% url 'login' %}">Login</a></p>
 </head>
 <body>
 
