@@ -5,7 +5,7 @@ from .models import Tarea
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Login view
@@ -19,12 +19,12 @@ class Logueo(LoginView):
 
 
 # Create your views here.
-class ListPendings(ListView):
+class ListPendings(LoginRequiredMixin, ListView):
     model = Tarea
     context_object_name = 'tareas'
 
 
-class DetalleTarea(DetailView):
+class DetalleTarea(LoginRequiredMixin, DetailView):
     model = Tarea
     # To give the html object a custom name and avoid using 'object' default calling
     context_object_name = 'tarea'
@@ -33,20 +33,20 @@ class DetalleTarea(DetailView):
 
 
 # To create a new task from a view
-class CrearTarea(CreateView):
+class CrearTarea(LoginRequiredMixin, CreateView):
     model = Tarea
     fields = '__all__'
     success_url = reverse_lazy('pendings')
 
 
 # To edit a task from a view
-class EditarTarea(UpdateView):
+class EditarTarea(LoginRequiredMixin, UpdateView):
     model = Tarea
     fields = '__all__'
     success_url = reverse_lazy('pendings')
 
 
-class EliminarTarea(DeleteView):
+class EliminarTarea(LoginRequiredMixin, DeleteView):
     model = Tarea
     context_object_name = 'tarea'
     success_url = reverse_lazy('pendings')
