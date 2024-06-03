@@ -5,9 +5,12 @@
     <title>Lista Pendientes</title>
     {% if request.user.is_authenticated %}
         <p>Hello: {{request.user}}</p>
-        <a href="">Logout</a>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form>
     {% else %}
-        <a href="">Login</a>
+        <a href="{% url 'login' %}">Login</a>
     {% endif %}
     <hr>
 

@@ -3,7 +3,19 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from .models import Tarea
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+
+
+# Login view
+class Logueo(LoginView):
+    template_name = "base/login.html"
+    fields = '__all__'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('pendings')
 
 
 # Create your views here.
@@ -26,11 +38,13 @@ class CrearTarea(CreateView):
     fields = '__all__'
     success_url = reverse_lazy('pendings')
 
+
 # To edit a task from a view
 class EditarTarea(UpdateView):
     model = Tarea
     fields = '__all__'
     success_url = reverse_lazy('pendings')
+
 
 class EliminarTarea(DeleteView):
     model = Tarea
