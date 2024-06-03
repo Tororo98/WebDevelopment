@@ -46,6 +46,11 @@ class ListPendings(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['tareas'] = context['tareas'].filter(usuario=self.request.user)
         context['count'] = context['tareas'].filter(completo=False)
+
+        search_value = self.request.GET.get('search-box') or ''
+        if search_value:
+            context['tareas'] = context['tareas'].filter(titulo__icontains=search_value)
+        context['search_value'] = search_value
         return context
 
 

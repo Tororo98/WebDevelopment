@@ -38,6 +38,11 @@
     </table>
 
     <a href="{% url 'crear-tarea' %}">Create New Task</a>
+
+    <form method="GET">
+        <input type="text" name="search-box" value="{{search_value}}">
+        <input type="submit" value="Search">
+    </form>
 </head>
 <body>
 
