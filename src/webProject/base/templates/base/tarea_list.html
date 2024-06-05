@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% extends 'base/principal.html' %}
+    {% block content %}
     <title>Lista Pendientes</title>
     {% if request.user.is_authenticated %}
         <p>Hello: {{request.user}}</p>
@@ -25,7 +27,6 @@
         {% for tarea in tareas %}
         <tr>
             <td>{{tarea.titulo}}</td>
-            <td><a href="{% url 'tarea' tarea.id %}">Look Up</a></td>
             <td><a href="{% url 'editar-tarea' tarea.id %}">Edit</a></td>
             <td><a href="{% url 'eliminar-tarea' tarea.id %}">Delete</a></td>
         </tr>
@@ -43,8 +44,6 @@
         <input type="text" name="search-box" value="{{search_value}}">
         <input type="submit" value="Search">
     </form>
+    {% endblock content %}
 </head>
-<body>
-
-</body>
 </html>

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% extends 'base/principal.html' %}
+    {% block content %}
     <title>Tasks Form</title>
     <h1>Tasks Form</h1>
 
@@ -12,9 +14,6 @@
     </form>
 
     <a href="{% url 'pendings' %}">Cancel</a>
-
+    {% endblock content %}
 </head>
-<body>
-
-</body>
 </html>
