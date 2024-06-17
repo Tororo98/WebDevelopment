@@ -2,35 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Lista Pendientes</title>
     {% extends 'base/principal.html' %}
     {% block content %}
-    <title>Lista Pendientes</title>
-    {% if request.user.is_authenticated %}
-        <p>Hello: {{request.user}}</p>
+    {% load humanize %}
+    <div class="barra-superior">
+        <div>
+            <h1>Hello {{ request.user|title }}</h1>
+            <h3 style="margin:0">You have <i>{{ count.count }}</i> pending task{{  count.count|pluralize }}</h3>
+        </div>
+        {% if request.user.is_authenticated %}
         <form method="POST" action="{% url 'logout' %}">
             {% csrf_token %}
             <input type="submit" value="Logout">
         </form>
-    {% else %}
+        {% else %}
         <a href="{% url 'login' %}">Login</a>
-    {% endif %}
-    <hr>
+        {% endif %}
 
-    <h1>Pendings List</h1>
+    </div>
 
     <table>
         <tr>
-            <th>Items</th>
+            <th style="text-align: left;">Items</th>
             <th></th>
             <th></th>
         </tr>
         {% for tarea in tareas %}
-        <tr>
-            <td>{{tarea.titulo}}</td>
-            <td><a href="{% url 'editar-tarea' tarea.id %}">Edit</a></td>
-            <td><a href="{% url 'eliminar-tarea' tarea.id %}">Delete</a></td>
-        </tr>
-
+        {% if tarea.completo %}
+            <tr>
+                <td>{{tarea.titulo}}</td>
+                <td><a href="{% url 'editar-tarea' tarea.id %}">Edit</a></td>
+                <td><a href="{% url 'eliminar-tarea' tarea.id %}">Delete</a></td>
+            </tr>
+        {% endif %}
         {% empty %}
         <h3>No items on this list</h3>
 
